@@ -5,10 +5,10 @@ const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
 })
-const pensionAge = argObj.get("–-pension")
+const pensionAge = parseInt(argObj.get("–-pension"))
 if (pensionAge) {
 	rl.question("how ald are you? ", (age) => {
-		console.log(age >= pensionAge ? "you are retired" : "you are Not retired")
+		console.log(parseInt(age) >= pensionAge ? "you are retired" : "you are Not retired")
 		rl.close()
 	})
 } else {
