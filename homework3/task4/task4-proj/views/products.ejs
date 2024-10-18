@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Products</title>
+		<style>
+			.products-table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-bottom: 30px;
+			}
+			.products-table th,
+			.products-table td {
+				border: 1px solid #ddd;
+				padding: 8px;
+				text-align: left;
+			}
+			.products-table th {
+				background-color: #f2f2f2;
+			}
+			.products-list {
+				display: flex;
+				gap: 30px;
+
+				flex-wrap: wrap;
+			}
+			.products__item {
+				width: 30%;
+				display: flex;
+				gap: 10px;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				background-color: #879791d2;
+				padding: 10px;
+			}
+			.products__name {
+				font-size: 22px;
+			}
+			.products__price {
+				font-size: 18px;
+				color: #ff9900;
+			}
+		</style>
+	</head>
+	<body>
+		<h1><%= title %></h1>
+		<hr />
+		<h3>Products table</h3>
+		<hr />
+		<table class="products-table">
+			<thead>
+				<tr>
+					<th>Product Name</th>
+					<th>Price (Uah)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% prodList.forEach((product) => { %>
+				<tr>
+					<td><%= product.title %></td>
+					<td><%= product.price %> Uah</td>
+				</tr>
+				<% }) %>
+			</tbody>
+		</table>
+		<hr />
+		<h3>Products list</h3>
+		<hr />
+		<div class="products-list">
+			<% prodList.forEach((product) => { %>
+			<div class="products__item">
+				<div class="products__name"><%= product.title %></div>
+				<div class="products__price"><%= product.price %> Uah</div>
+			</div>
+			<% }) %>
+		</div>
+	</body>
+</html>
