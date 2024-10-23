@@ -49,6 +49,32 @@
 				margin-top: 10px;
 			}
 		</style>
+		<script>
+			async function onDeleteProd(id) {
+				console.log("id", id)
+				try {
+					const response = await fetch("/products/", {
+						method: "DELETE",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({ id }),
+					})
+
+					if (response.ok) {
+						console.log("product deleted")
+						//window.location.reload(true)
+						window.location.href = "/products"
+					} else {
+						console.error("problem with deleting product")
+					}
+				} catch (error) {
+					console.error("Error:", error)
+				}
+			}
+		</script>
+
+		<script src="/javascripts/RequiestManager.js"></script>
 	</head>
 	<body>
 		<div class="products-container">
@@ -68,8 +94,9 @@
 						<span class="products-container__price"><%= product.price %></span>
 					</div>
 				</a>
-				<!-- зробив видалення поки таким способом але не знаю на скільки він правльний  -->
-				<a href="/products/delete/<%= product.id %>" class="delete-btn">Delete</a>
+
+				<!--<button onclick="onDeleteProd('<%= product.id %>')" class="delete-btn">delete</button>-->
+				<button class="delete-btn" onclick="RequestManager.deleteRequest('/products', { id: `<%= product.id %>` })">delte</button>
 			</div>
 			<% }) %>
 		</div>
