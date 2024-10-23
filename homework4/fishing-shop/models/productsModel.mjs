@@ -29,5 +29,12 @@ class productsModel {
 			throw new Error(err, "err with deleting prod")
 		}
 	}
+	static updateProd(id, prod) {
+		try {
+			dataManager.updateItemById(id, prod)
+		} catch (err) {
+			throw new Error(err, "err wrih updating")
+		}
+	}
 }
 export default productsModel

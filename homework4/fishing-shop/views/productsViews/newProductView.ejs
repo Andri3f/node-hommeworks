@@ -54,20 +54,20 @@
 	</head>
 	<body>
 		<div>
-			<form action="/products" method="post">
+			<form action="/products<%= product ? '/' + product.id : '' %>" method="post">
 				<label>
 					Enter Title
-					<input type="text" name="title" />
+					<input type="text" value="<%= product?.title %>" name="title" />
 				</label>
 				<label>
 					Enter Price
-					<input type="number" name="price" />
+					<input type="number" value="<%= product?.price %>" name="price" />
 				</label>
 				<label>
 					Enter Test From To (2 -10)
-					<input type="text" name="test" />
+					<input type="text" value="<%= product?.test %>" name="test" />
 				</label>
-				<button type="submit">Add new prod</button>
+				<button type="submit"><%= product? 'confirm changes' : 'create' %> Add new prod</button>
 			</form>
 		</div>
 	</body>
