@@ -20,10 +20,8 @@ class ProductsController {
 	static deleteProd(req, res) {
 		const { id } = req.body
 		console.log("----------id", id)
-
 		productsModule.deleteProdById(id)
-		res.send(200, { success: true })
-		res.redirect("/products")
+		return res.json({ success: true })
 	}
 }
 export default ProductsController

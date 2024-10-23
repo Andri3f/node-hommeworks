@@ -95,8 +95,8 @@
 					</div>
 				</a>
 
-				<!--<button onclick="onDeleteProd('<%= product.id %>')" class="delete-btn">delete</button>-->
 				<button class="delete-btn" onclick="RequestManager.deleteRequest('/products', { id: `<%= product.id %>` })">delte</button>
+				<!--<button onclick="onDeleteProd('<%= product.id %>')" class="delete-btn">delete</button>-->
 			</div>
 			<% }) %>
 		</div>

@@ -7,8 +7,15 @@ class RequestManager {
 			},
 			body: JSON.stringify(body),
 		})
+
 		const data = await response.json()
-		window.location.reload(true)
+
+		if (data.success) {
+			window.location.reload(true)
+		} else {
+			throw new Error(data.error)
+		}
+
 		return data
 	}
 }
