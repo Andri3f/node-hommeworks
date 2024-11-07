@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>products</title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+		<script src="/javascripts/RequiestManager.mjs"></script>
+	</head>
+	<body>
+		<h1>there is products list</h1>
+		<div class="products">
+			<% carsList.forEach((car) => { %>
+
+			<div class="product">
+				<div class="product__image">
+					<img src="<%= car.imgSrc %>" alt="" />
+				</div>
+				<div class="product__title"><%= car.title %></div>
+				<div class="product__year">year of production of the car - <%= car.year %></div>
+				<div class="product__price">price - <%= car.price %></div>
+				<button class="product__delete" onclick="RequestManager.deleteReq('/cars', {id: '<%= car.id %>'})">delete</button>
+				<a href="/cars/create/<%= car.id %>">edit</a>
+			</div>
+			<% }) %>
+		</div>
+		<a href="/cars/create"> Add new car</a>
+	</body>
+</html>
