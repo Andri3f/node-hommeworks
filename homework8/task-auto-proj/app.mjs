@@ -1,3 +1,9 @@
+
+// 1)додати до кожного елемента даних у вашому проєкті поле «owner» - де зберігається id властника (самі власники зберігається у окремій
+// 	колекції «owners» (піб власника, адерса)). Організувати вибірку даних з відображення інформації про власників у списку елементів даних
+// 2)розмістити базу даних у “Atlas” та пов’язати з здеплоєним проєктом (вказати список валідних IP адрес)
+
+
 import express from "express"
 import path from "path"
 import cookieParser from "cookie-parser"
@@ -37,5 +43,8 @@ app.use((err, req, res, next) => {
 	res.status(err.status || 500)
 	res.render("error")
 })
-
+const port = process.env.PORT || 3000 // Use Render's port or 3000 locally
+app.listen(port, () => {
+	console.log(`Server is running on port ${port}`)
+})
 export default app
