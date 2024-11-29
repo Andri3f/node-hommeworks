@@ -1,4 +1,4 @@
-import ProductsDbService from "../modules/products/ProductsDbService.mjs"
+import ProductsDbService from "../modules/products/productsDbService.mjs"
 import { validationResult } from "express-validator"
 class ProductController {
 	static async loadList(req, res) {
