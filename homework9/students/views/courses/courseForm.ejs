@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+      <% if (errors?.length > 0) { %>
+      <ul>
+        <% errors.forEach(function(error) { %>
+        <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+      <hr />
+      <% } %>
+		<form action="/courses/<%= course?._id ? course._id : "" %>" method="post">
+			<div>
+				<label for=""> <span>enter title</span> <input require value="<%= course?.title %>" type="text" name="title" /> </label>
+			</div>
+         <hr>
+			<div>
+				<label for=""> <span>enter duration</span> <input require  value="<%= course?.duration  %>"  type="number" name="duration" /> </label>
+			</div>
+         <hr>
+			<div>
+            <div>check students</div>
+            <label for="">
+               <% studentsList.forEach(student => { %>
+                  <label for=""><%= student.name %> <input name="studentsList" <%= course?.studentsList.includes(student._id.toString()) ? 'checked' : '' %> value="<%= student._id %>" type="checkbox">
+                  </label>
+               <% }) %>
+            </label>
+			</div>
+         <hr>
+         <div>
+            <div>check seminars</div>
+            <label for="">
+               <% seminarsList.forEach(seminar => { %>
+                  <label for=""><%= seminar.topic %>  <input name="seminarsList"  <%= course?.seminarsList.includes(seminar._id.toString()) ? 'checked' : '' %>  value="<%= seminar._id %>" type="checkbox">  </label>
+               <% }) %>
+            </label>
+			</div>
+			<button type="submit"><%= course?._id ? 'edit' : 'create' %></button>
+		</form>
+	</body>
+</html>

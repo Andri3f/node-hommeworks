@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+      <% if (errors?.length > 0) { %>
+      <ul>
+        <% errors.forEach(function(error) { %>
+        <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+      <hr />
+      <% } %>
+		<form action="/students/<%= student?._id ? student._id : "" %>" method="post">
+			<div>
+				<label for=""> <span>enter name</span> <input require value="<%= student?.name %>" type="text" name="name" /> </label>
+			</div>
+			<div>
+				<label for=""> <span>enter age</span> <input require min="17" value="<%= student?.age  %>" max="50" type="number" name="age" /> </label>
+			</div>
+			<div>
+				<label for=""> <span>enter average score </span> <input   step="any"  require  value="<%= student?.averageScore  %>" type="number" name="averageScore" /> </label>
+			</div>
+			<button type="submit"><%= student?._id ? 'edit' : 'create' %></button>
+		</form>
+	</body>
+</html>

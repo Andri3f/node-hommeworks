@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+		<script src="/javascripts/RequestManager.js"></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>Courses Page</h1>
+		<%- include('../sections/header') %>
+		<table>
+			<thead>
+				<tr>
+					<th>title</th>
+					<th>duration</th>
+					<th>students List</th>
+					<th>seminars List</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% courses.forEach(course => { %>
+				<tr>
+					<td><%= course.title %></td>
+					<td><%= course.duration %></td>
+					<td>
+						<% if (course.studentsList && course.studentsList.length >0) { %>
+						<div>
+							<% course.studentsList.forEach(student => { %>
+							<span> <%= student.name %> , </span>
+							<% }) %>
+						</div>
+						<% } %>
+					</td>
+					<td>
+						<% if (course.seminarsList && course.seminarsList.length >0) { %>
+						<div>
+							<% course.seminarsList.forEach(seminar => { %>
+							<span> <%= seminar.topic %> , </span>
+							<% }) %>
+						</div>
+						<% } %>
+					</td>
+					<td>
+						<a href="/courses/form/<%= course._id %>" type="submit" class="edit-btn">Edit</a>
+						<button onclick="RequestManager.deleteRequest('/courses' , '<%= course._id %>')" type="submit" class="delete-btn">Delete</button>
+					</td>
+				</tr>
+				<% }) %>
+			</tbody>
+		</table>
+		<a href="/courses/form">add new course</a>
+	</body>
+</html>

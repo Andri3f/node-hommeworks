@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+      <script src="/javascripts/RequestManager.js"></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>Products</h1>
+      
+		<div>
+         <table border="1">
+            <thead>
+              <tr>
+                <th>Number</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% productsList.forEach((product, indx) => { %>
+              <tr>
+                <td><%= indx + 1 %></td> 
+                <td><%= product.title %></td> 
+                <td><%= product.price %></td> 
+                <td><%= product.amount %></td> 
+                <td><button onclick="RequestManager.deleteRequest('/products', '<%= product._id %>' )">delete</button></td> 
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+          <a href="/products/add">add products</a>
+	</body>
+</html>
