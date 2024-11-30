@@ -3,7 +3,6 @@ class MongooseCRUDManager {
 		this.model = model
 	}
 
-	// Вибірка всього списку з бази з фільтрами, projection і populateFields
 	async getList(filters = {}, projection = null, populateFields = []) {
 		try {
 			let query = this.model.find(filters, projection)
