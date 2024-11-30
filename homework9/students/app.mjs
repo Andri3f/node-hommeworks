@@ -41,4 +41,8 @@ app.use((err, req, res, next) => {
 	res.status(err.status || 500)
 	res.render("error")
 })
+const port = process.env.PORT || 3000 // Use Render's port or 3000 locally
+app.listen(port, () => {
+	console.log(`Server is running on port ${port}`)
+})
 export default app
