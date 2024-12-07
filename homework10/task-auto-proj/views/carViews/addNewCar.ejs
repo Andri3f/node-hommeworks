@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+		<script src="/javascripts/RequiestManager.mjs"></script>
+	</head>
+	<body>
+		<% if (errors?.length > 0) { %>
+		<ul>
+			<% errors.forEach(function(error) { %>
+			<li><%= error.msg %></li>
+			<% }) %>
+		</ul>
+		<hr />
+		<% } %>
+
+		<form class="product-form" action="/cars/create<%= car?.id ? '/' + car.id : '' %>" enctype="multipart/form-data" method="post">
+			<div class="product-form__field">
+				<label class="product-form__label" for="title">Car Title:</label>
+				<input class="product-form__input" value="<%=car?.title%>" type="text" id="title" name="title" required />
+			</div>
+
+			<div class="product-form__field">
+				<label class="product-form__label" for="year">Year of Production:</label>
+				<input class="product-form__input" value="<%=car?.year%>" type="number" id="year" name="year" required />
+			</div>
+
+			<div class="product-form__field">
+				<label class="product-form__label" for="price">Price:</label>
+				<input class="product-form__input" value="<%=car?.price%>" type="number" id="price" name="price" required />
+			</div>
+			<div class="product-form__field">
+            <label class="product-form__label" >select car owner</label>
+				<select class="select" name="owner">
+               <% owners.forEach(owner => { %>
+                  <option 
+                      value="<%= owner?._id %>" 
+                      <%= car?.owner.toString() === owner?._id.toString() ? 'selected' : '' %>
+                  >
+                      <%= owner.fullName %>
+                  </option>
+                  <% }); %>
+				</select>
+			</div>
+			<div class="product-form__field">
+				<label class="product-form__label" for="price">Chose image</label>
+				<input onchange="RequestManager.onInputFile(event ,'#imagePrev')" class="product-form__input" type="file" id="price" accept="image/*" name="imgSrc" <%= car ? '' : 'required' %>/>
+				<img class="small-img" id="imagePrev" src="data:image;base64,<%=car?.imgSrc%>" alt="" />
+			</div>
+
+			<div class="product-form__actions">
+				<button class="product-form__submit" type="submit"><%= car ? 'edit' : 'add' %></button>
+			</div>
+		</form>
+	</body>
+</html>

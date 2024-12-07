@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>products</title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+		<script src="/javascripts/RequiestManager.mjs"></script>
+	</head>
+	<body>
+		<%- include('../commonViews/header')%>
+		<div class="products__container">
+			<h1 class="title">there is Cars list</h1>
+			<div class="products-filter">
+				<form class="products-filter__form" action="/cars" method="get">
+					<div class="products-filter__item">
+						<label> <span>min price</span> <input value="<%=filters?.minPrice %>" name="minPrice" type="number" /></label>
+					</div>
+					<div class="products-filter__item">
+						<label> <span>max price</span> <input value="<%=filters?.maxPrice %>" name="maxPrice" type="number" /></label>
+					</div>
+					<div class="products-filter__item">
+						<label for="">car title <input value="<%=filters?.title %>" name="title" type="text" /></label>
+					</div>
+
+					<button class="products-filter__btn" type="submit">filter</button>
+					<a class="products-filter__btn" href="/cars">Clear</a>
+				</form>
+			</div>
+			<div class="products">
+				<% carsList.forEach((car) => { %>
+
+				<div class="product">
+					<div class="product__image">
+						<img src="data:image;base64,<%= car.imgSrc %>" alt="" />
+					</div>
+					<div class="product__title"><%= car.title %></div>
+					<div class="product__year"><span> year of production of the car </span> - <%= car.year %></div>
+					<div class="product__price"><span> price </span> - <%= car.price %></div>
+					<div class="product__owner"><span> owner </span> - <%=car.owner?.fullName || car.owner?.firstName || car.owner%></div>
+					<% if(user && user.type.title === "manager") { %>
+					<div><button class="product__delete" onclick="RequestManager.deleteReq('/cars', {id: '<%= car.id %>'})">delete</button></div>
+					<div><a class="product__edit" href="/cars/create/<%= car.id %>">edit</a></div>
+					<% } %>
+				</div>
+				<% }) %>
+			</div>
+			<% if(user && user.type.title === "manager") { %>
+			<a class="add" href="/cars/create"> Add new car</a>
+			<% } %>
+		</div>
+	</body>
+</html>

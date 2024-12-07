@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><%= authType === 'login' ? 'Login' : 'Register' %></title>
+		<style>
+			form {
+				background: #fff;
+				padding: 20px;
+				border-radius: 8px;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+				width: 300px;
+			}
+			label {
+				display: block;
+				margin-bottom: 10px;
+			}
+			input {
+				width: 100%;
+				padding: 8px;
+				margin-top: 5px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+			}
+			button {
+				width: 100%;
+				padding: 10px;
+				background: #007bff;
+				color: #fff;
+				border: none;
+				border-radius: 4px;
+				cursor: pointer;
+			}
+			button:hover {
+				background: #0056b3;
+			}
+			a {
+				color: #007bff;
+				text-decoration: none;
+			}
+			a:hover {
+				text-decoration: underline;
+			}
+			div {
+				margin-top: 10px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<% if (errors?.length > 0) { %>
+		<ul>
+			<% errors.forEach(function(error) { %>
+			<li><%= error.msg %></li>
+			<% }) %>
+		</ul>
+		<hr />
+		<% } %>
+		<hr />
+		<form action="/auth/<%= authType %>" method="POST">
+			<label>
+				<span>Enter email</span>
+				<input type="email" name="email" required />
+			</label>
+			<label>
+				<span>Password</span>
+				<input type="password" name="password" required />
+			</label>
+			<% if (authType === 'register') { %>
+			<label>
+				<span>Confirm password</span>
+				<input type="password" name="passwordConfirm" required />
+			</label>
+			<% } %>
+			<div>
+				<% if (authType === 'login') { %> No account yet? <a href="/auth/register">Register</a> <% } else { %> Already have an account? <a href="/auth/login">Login</a>
+				<% } %>
+			</div>
+			<button type="submit"><%= authType === 'login' ? 'Login' : 'Register' %></button>
+		</form>
+	</body>
+</html>

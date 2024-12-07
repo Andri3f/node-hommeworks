@@ -1,0 +1,24 @@
+<header class="header">
+	<div class="header__container">
+		<nav>
+			<ul class="header__list">
+				<li>
+					<a href="html/index.html">Home</a>
+				</li>
+				<li>
+					<a href="html/about.html">About</a>
+				</li>
+				<li>
+					<a href="/cars">cars list</a>
+				</li>
+				<li>
+					<% if (user) { %>
+					<a href="/auth/logout">logout</a>
+					<% } else { %>
+					<a href="/auth/login">login/register</a>
+					<%}%>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</header>
